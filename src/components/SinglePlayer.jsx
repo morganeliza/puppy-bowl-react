@@ -1,11 +1,12 @@
 import { deletePlayer } from "../api"
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 // import { getSinglePlayer } from "../api";
 
 export default function SinglePlayer({ player }) {
 
     const { id } = useParams()
+    const navigate = useNavigate()
 
     // useEffect(() => {
     //     async function getData() {
@@ -18,6 +19,9 @@ export default function SinglePlayer({ player }) {
     // }, [id]
 
     // )
+    function handleSubmit() {
+        navigate(`/player/${player.id}`);
+    }
 
     function handleDelete() {
         deletePlayer(player.id);
@@ -30,7 +34,7 @@ export default function SinglePlayer({ player }) {
             <h2>Breed: {player.breed}</h2>
             <h2>Status: {player.status}</h2>
             <button onClick={handleDelete}>Delete</button>
-            <Link to={`/player/${player.id}`}>More Details</Link>
+            <button onClick={handleSubmit}>More Details</button>
 
         </div>
 

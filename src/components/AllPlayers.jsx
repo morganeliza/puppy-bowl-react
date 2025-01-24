@@ -17,21 +17,35 @@ export default function AllPlayers() {
     }, []
 
     )
-
     return (
         players.map(player => {
             return (
-                <Routes>
-                        <Route path='/player/:id' element={<SinglePlayer player = { player } />} />
-                </Routes>
+
+                <SinglePlayer player={player} />
+
             )
         })
 
-            // <SinglePlayer player={players[0]} />
-            // <SinglePlayer player={players[1]} />
-            // <SinglePlayer player={players[2]} />
-        
+        // <SinglePlayer player={players[0]} />
+        // <SinglePlayer player={players[1]} />
+        // <SinglePlayer player={players[2]} />
+
     );
+
+    // return (
+    //     players.map(player => {
+    //         return (
+    //             <Routes>
+    //                     <Route path='/player/:id' element={<SinglePlayer player = { player } />} />
+    //             </Routes>
+    //         )
+    //     })
+
+    //         // <SinglePlayer player={players[0]} />
+    //         // <SinglePlayer player={players[1]} />
+    //         // <SinglePlayer player={players[2]} />
+
+    // );
 
 
 
