@@ -1,45 +1,31 @@
 import { deletePlayer } from "../api"
-import { useParams, Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-// import { getSinglePlayer } from "../api";
+import { useParams, useNavigate } from "react-router-dom";
 
-export default function SinglePlayer({ player }) {
+export default function SinglePlayer({ player, getData }) {
 
-    const { id } = useParams()
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     async function getData() {
-    //         const playersData = await getSinglePlayer();
-    //         setPlayers(playersData);
-
-    //     }
-    //     getData();
-
-    // }, [id]
-
-    // )
-    function handleSubmit() {
-        navigate(`/player/${player.id}`);
+    async function handleDelete() {
+        await deletePlayer(player.id);
+        getData();
     }
 
-    function handleDelete() {
-        deletePlayer(player.id);
+    function moreDetails() {
+        navigate(`/${player.id}`);
     }
 
     return (
-        <div key={player.id} className="playerCard">
-            <img src={player.imageUrl} />
-            <h1>Name: {player.name}</h1>
-            <h2>Breed: {player.breed}</h2>
-            <h2>Status: {player.status}</h2>
-            <button onClick={handleDelete}>Delete</button>
-            <button onClick={handleSubmit}>More Details</button>
-
-        </div>
-
-
-    )
-
-
+        <>
+            <div className="playerCard">
+                <img src={player.imageUrl} />
+                <h1>Name: {player.name}</h1>
+                <button id="details" onClick={moreDetails}>
+                    Details
+                </button>
+                <button id="delete" onClick={handleDelete}>
+                    Delete
+                </button>
+            </div>
+        </>
+    );
 }

@@ -1,39 +1,67 @@
-const BASE_URL = "https://fsa-puppy-bowl.herokuapp.com/api/2409-GHP-ET-WEB-PT"
+const BASE_URI = "https://fsa-puppy-bowl.herokuapp.com/api/2409-GHP-ET-WEB-PT"
 
 export async function getPlayers() {
     try {
-        const response = await fetch(BASE_URL + '/players');
+        const response = await fetch(BASE_URI + '/players');
         const json = await response.json();
         const result = json.data;
         console.log(result.players)
         return result.players;
     }
-    catch {
-        console.log("getPlayers");
+    catch (error) {
+        console.log(error);
     }
 
 }
 
-export function addPlayer(player) {
+export async function getMoreDetails(id) {
+    try {
+        const response = await fetch(BASE_URI + `/players/${id}`);
+        const json = await response.json();
+        const result = json.data;
+        return result.player;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-export function deletePlayer(playerId) {
-    console.log(`deletePlayer: ${playerId}`);
+export async function getTeams() {
+    try {
+        const response = await fetch(BASE_URI + "/teams");
+        const json = await response.json();
+        const result = json.data;
+        return result.teams;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
-// export async function getSinglePlayer() {
-//     try {
-//         const response = await fetch(`https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}/players/${id}`);
-//         const json = await response.json();
-//         const result = json.data;
-//         console.log(result.players)
-//         return result.players;
-//     }
-//     catch {
-//         console.log("getSinglePlayer");
-//     }
+export async function addPlayer(player) {
+    try {
+        const response = await fetch(BASE_URI + "/players", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(player),
+        });
+        console.log(response)
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-// }
+export async function deletePlayer(playerId) {
+    try {
+        const response = await fetch(BASE_URI + `/players/${playerId}`, {
+            method: "DELETE",
+        });
+        const result = await response.json();
+        console.log(result);
+    } catch (err) {
+        console.error(err);
+    }
+}
 
 
 getPlayers()

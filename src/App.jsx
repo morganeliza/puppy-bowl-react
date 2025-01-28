@@ -1,31 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import AllPlayers from './components/AllPlayers'
-import SinglePlayer from './components/SinglePlayer'
 import { Routes, Route } from 'react-router-dom'
 import SearchBar from './components/SearchBar'
-import NewPlayerForm from './components/NewPlayerForm'
+import PlayerDetails from './components/PlayerDetails'
+
 
 function App() {
-
   return (
     <>
-      <AllPlayers />
-      <div id="main-section">
-        <Routes>
-
-          <Route path='/player/:name' element={<SinglePlayer />} />
-          <Route path='/' element={<div><AllPlayers /> <NewPlayerForm />   </div>} />
-
-        </Routes>
-      </div>
-      <div>
-
-      </div >
+      <Routes>
+        <Route path="/" element={<AllPlayers />} />
+        <Route path="/:id" element={<PlayerDetails />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
