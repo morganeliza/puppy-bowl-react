@@ -1,7 +1,6 @@
 import './App.css'
 import AllPlayers from './components/AllPlayers'
 import { Routes, Route } from 'react-router-dom'
-import SearchBar from './components/SearchBar'
 import PlayerDetails from './components/PlayerDetails'
 
 

@@ -45,7 +45,7 @@
 }
 
 .playerCard {
-  color: #ffffff;
+  color: rgba(222, 221, 219, 0.87);
   background-color: #646cffaa;
   margin: 10px;
 }
